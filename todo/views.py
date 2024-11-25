@@ -3,50 +3,79 @@ from django.http import HttpResponse
 
 
 def task_list(request):
-    if request.method == 'POST':
-        task_name = request.POST.get('taskName')
-        description = request.POST.get('description')
-        due_date = request.POST.get('dueDate')
-        priority = request.POST.get('priority')
-
-        # Ma'lumotlarni saqlash yoki boshqa amallarni bajarish
-
-        # Xabar yuborish (masalan, muvaffaqiyatli saqlash)
-        return HttpResponse("Vazifa muvaffaqiyatli saqlandi!")
 
     html_response = """
-    <!DOCTYPE html>
+        <!DOCTYPE html>
     <html lang="uz">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Yangi Vazifa Yaratish</title>
+        <title>Vazifalar Ro'yxati</title>
     </head>
     <body>
-
-        <h2>Yangi Vazifa Yaratish</h2>
-
-        <form action="" method="post">
-            <label for="taskName">Vazifa nomi:</label><br>
-            <input type="text" id="taskName" name="taskName" required><br><br>
-
-            <label for="description">Tavsif:</label><br>
-            <textarea id="description" name="description" rows="4" cols="50" required></textarea><br><br>
-
-            <label for="dueDate">Oxirgi sana:</label><br>
-            <input type="date" id="dueDate" name="dueDate" required><br><br>
-
-            <label for="priority">Muhimlik darajasi:</label><br>
-            <select id="priority" name="priority" required>
-                <option value="past">O'tgan</option>
-                <option value="medium">O'rta</option>
-                <option value="high">Yuqori</option>
+        <h1>Vazifalar Ro'yxati</h1>
+        <h2>Yangi vazifa qo'shish</h2>
+        <form>
+            <label for="vazifa-nomi">Vazifa nomi:</label>
+            <input type="text" id="vazifa-nomi" name="vazifa-nomi"><br><br>
+            <label for="tavsif">Tavsif:</label><br>
+            <textarea id="tavsif" name="tavsif"></textarea><br><br>
+            <label for="muhimlik">Muhimlik darajasi:</label>
+            <select id="muhimlik" name="muhimlik">
+                <option value="past">Past</option>
+                <option value="orta">O'rta</option>
+                <option value="yuqori">Yuqori</option>
             </select><br><br>
-
-            <button type="submit">Hammasini_Saqlash</button>
+            <label for="muddat">Muddat:</label>
+            <input type="date" id="muddat" name="muddat"><br><br>
+            <button type="submit">Vazifani qo'shish</button>
         </form>
-
+        <h2>Mavjud vazifalar</h2>
+        <table>
+            <tr>
+                <th>Vazifa</th>
+                <th>Tavsif</th>
+                <th>Muhimlik</th>
+                <th>Muddat</th>
+                <th>Holat</th>
+            </tr>
+            <tr>
+                <td>Hisobot tayyorlash</td>
+                <td>Oylik moliyaviy hisobotni tayyorlash va topshirish</td>
+                <td>Yuqori</td>
+                <td>2023-05-31</td>
+                <td>Bajarilmoqda</td>
+            </tr>
+            <tr>
+                <td>Mijoz bilan uchrashuv</td>
+                <td>Yangi loyiha bo'yicha mijoz bilan muzokaralar o'tkazish</td>
+                <td>O'rta</td>
+                <td>2023-05-25</td>
+                <td>Rejalashtirilgan</td>
+            </tr>
+            <tr>
+                <td>Prezentatsiya tayyorlash</td>
+                <td>Yangi mahsulot uchun taqdimot slaydlarini tayyorlash</td>
+                <td>Past</td>
+                <td>2023-06-05</td>
+                <td>Boshlanmagan</td>
+            </tr>
+            <tr>
+                <td>Xodimlar uchun trening</td>
+                <td>Yangi dasturiy ta'minot bo'yicha xodimlarga qo'llanma berish</td>
+                <td>O'rta</td>
+                <td>2023-06-10</td>
+                <td>Rejalashtirilgan</td>
+            </tr>
+            <tr>
+                <td>Loyiha hujjatlarini yangilash</td>
+                <td>Joriy loyihaning texnik hujjatlarini yangilash va arxivlash</td>
+                <td>Past</td>
+                <td>2023-06-15</td>
+                <td>Boshlanmagan</td>
+            </tr>
+        </table>
     </body>
     </html>
+
     """
     return HttpResponse(html_response)
